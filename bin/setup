@@ -12,13 +12,14 @@ set -o pipefail
 #
 GIT_ROOT_DIR=$(git rev-parse --show-toplevel)
 CLUSTER_NAME="ira"
+ARGO_CD_SERVER_URL="127.0.0.1:31000"
 
 #
 # Create k8s cluster
 #
 if [ -z "$(kind get clusters | grep ira)" ]; then
     echo "Create cluster ${CLUSTER_NAME}"
-    kind create cluster --name $CLUSTER_NAME --config ${GIT_ROOT_DIR}/kindconfig.yaml
+    kind create cluster --name ${CLUSTER_NAME} --config ${GIT_ROOT_DIR}/kindconfig.yaml
 else
     echo "Cluster already exists: ${CLUSTER_NAME}"
 fi
@@ -32,3 +33,16 @@ kustomize build namespaces/base | kubectl apply -f -
 # Setup Argo CD
 #
 kustomize build argocd/base | kubectl apply -f -
+argocd login \
+    --insecure \
+    --username admin \
+    --password "$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)" \
+    ${ARGO_CD_SERVER_URL}
+argocd app create argocd-config \
+    --repo https://github.com/corrupt952/ira-apps.git \
+    --path argocd-config/base \
+    --dest-namespace argocd \
+    --dest-server https://kubernetes.default.svc \
+    --sync-policy automated \
+    --auto-prune \
+    --revision master
