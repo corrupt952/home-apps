@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+#
+# Set error flags
+#
+set -o nounset
+set -o errexit
+set -o pipefail
+
+#
+# Define variables
+#
+GIT_ROOT_DIR=$(git rev-parse --show-toplevel)
+CLUSTER_NAME="ira"
+
+#
+# Create k8s cluster
+#
+if [ -z "$(kind get clusters | grep ira)" ]; then
+    echo "Create cluster ${CLUSTER_NAME}"
+    kind create cluster --name $CLUSTER_NAME --config ${GIT_ROOT_DIR}/kindconfig.yaml
+else
+    echo "Cluster already exists: ${CLUSTER_NAME}"
+fi
+
+#
+# Create namespaces
+#
+kustomize build namespaces/base | kubectl apply -f -
+
+#
+# Setup Argo CD
+#
+kustomize build argocd/base | kubectl apply -f -
