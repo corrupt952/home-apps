@@ -12,10 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kubernetes-dashboard
+# NOTE: namespacesで管理するのでコメントアウト
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: kubernetes-dashboard
 
 ---
 
