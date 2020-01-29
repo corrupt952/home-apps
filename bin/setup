@@ -12,7 +12,14 @@ set -o pipefail
 #
 GIT_ROOT_DIR=$(git rev-parse --show-toplevel)
 CLUSTER_NAME="ira"
-ARGO_CD_SERVER_URL="127.0.0.1:31000"
+ARGO_CD_SERVER_URL="argocd.local"
+
+#
+# Add host configuration
+#
+if [ -z "$(grep argocd.local /etc/hosts)" ]; then
+    echo "127.0.0.1 argocd.local" | sudo tee -a /etc/hosts
+fi
 
 #
 # Create k8s cluster
