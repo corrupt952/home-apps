@@ -47,6 +47,7 @@ kustomize build ingress-nginx/base | kubectl apply -f-
 kustomize build argocd/base | kubectl apply -f-
 argocd login \
     --insecure \
+    --grpc-web \
     --username admin \
     --password "$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)" \
     ${ARGO_CD_SERVER_URL}
