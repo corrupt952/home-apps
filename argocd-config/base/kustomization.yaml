@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - argocd.yaml
   - namespaces.yaml
+  - ingress-nginx.yaml
   - kubernetes-dashboard.yaml
