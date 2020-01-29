@@ -20,6 +20,9 @@ ARGO_CD_SERVER_URL="argocd.local"
 if [ -z "$(grep argocd.local /etc/hosts)" ]; then
     echo "127.0.0.1 argocd.local" | sudo tee -a /etc/hosts
 fi
+if [ -z "$(grep kubernetes-dashboard.local /etc/hosts)" ]; then
+    echo "127.0.0.1 kubernetes-dashboard.local" | sudo tee -a /etc/hosts
+fi
 
 #
 # Create k8s cluster
