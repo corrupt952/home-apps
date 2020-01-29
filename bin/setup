@@ -45,6 +45,15 @@ kustomize build ingress-nginx/base | kubectl apply -f-
 # Setup Argo CD
 #
 kustomize build argocd/base | kubectl apply -f-
+if [ -z "$(kubectl -n argocd get pods --field-selector=status.phase=Running 2>&1 | grep argocd-server)" ]; then
+    echo -n "argocd-server waiting"
+    while [ -z "$(kubectl -n argocd get pods --field-selector=status.phase=Running 2>&1 | grep argocd-server)" ];
+    do
+        echo -n "."
+        sleep 1
+    done
+    echo ""
+fi
 argocd login \
     --insecure \
     --grpc-web \
@@ -52,6 +61,8 @@ argocd login \
     --password "$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)" \
     ${ARGO_CD_SERVER_URL}
 argocd app create argocd-config \
+    --insecure \
+    --grpc-web \
     --repo https://github.com/corrupt952/ira-apps.git \
     --path argocd-config/base \
     --dest-namespace argocd \
