@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#
+# Set error flags
+#
+set -o nounset
+set -o errexit
+set -o pipefail
+
+#
+# Define variables
+#
+CLUSTER_NAME="ira"
+
+#
+# Create k8s cluster
+#
+if [ -z "$(kind get clusters 2>&1 | grep ira)" ]; then
+    echo "Cluster not exists: ${CLUSTER_NAME}"
+else
+    echo "Delete cluster ${CLUSTER_NAME}"
+    kind delete cluster --name ${CLUSTER_NAME}
+fi
