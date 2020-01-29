@@ -24,7 +24,7 @@ fi
 #
 # Create k8s cluster
 #
-if [ -z "$(kind get clusters | grep ira)" ]; then
+if [ -z "$(kind get clusters 2>&1 | grep ira)" ]; then
     echo "Create cluster ${CLUSTER_NAME}"
     kind create cluster --name ${CLUSTER_NAME} --config ${GIT_ROOT_DIR}/kindconfig.yaml
 else
@@ -34,12 +34,17 @@ fi
 #
 # Create namespaces
 #
-kustomize build namespaces/base | kubectl apply -f -
+kustomize build namespaces/base | kubectl apply -f-
+
+#
+# Setup Nginx Ingress Controller
+#
+kustomize build ingress-nginx/base | kubectl apply -f-
 
 #
 # Setup Argo CD
 #
-kustomize build argocd/base | kubectl apply -f -
+kustomize build argocd/base | kubectl apply -f-
 argocd login \
     --insecure \
     --username admin \
