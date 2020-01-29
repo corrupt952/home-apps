@@ -4,5 +4,5 @@ namespace: kubernetes-dashboard
 resources:
   - upstream/alternative.yaml
   - ingress.yaml
+patchesStrategicMerge:
   - clusterRoleBinding.yaml
-patchesStrategicMerge: []
