@@ -12,16 +12,13 @@ set -o pipefail
 #
 GIT_ROOT_DIR=$(git rev-parse --show-toplevel)
 CLUSTER_NAME="ira"
-ARGO_CD_SERVER_URL="argocd.local"
+ARGOCD_HOST="argocd.local"
 
 #
 # Add host configuration
 #
 if [ -z "$(grep argocd.local /etc/hosts)" ]; then
-    echo "127.0.0.1 argocd.local" | sudo tee -a /etc/hosts
-fi
-if [ -z "$(grep kubernetes-dashboard.local /etc/hosts)" ]; then
-    echo "127.0.0.1 kubernetes-dashboard.local" | sudo tee -a /etc/hosts
+    echo "127.0.0.1 ${ARGOCD_HOST}" | sudo tee -a /etc/hosts
 fi
 
 #
@@ -37,17 +34,19 @@ fi
 #
 # Create namespaces
 #
-kustomize build namespaces/base | kubectl apply -f-
+echo "Create namespaces..."
+kubectl apply -k namespaces/base
 
 #
 # Setup Nginx Ingress Controller
 #
-kustomize build ingress-nginx/base | kubectl apply -f-
+echo "Create Nginx Ingress Controller..."
+kubectl apply -k nginx-ingress-controller/base
 
 #
 # Setup Argo CD
 #
-kustomize build argocd/base | kubectl apply -f-
+kubectl apply -k argocd/base
 if [ -z "$(kubectl -n argocd get pods --field-selector=status.phase=Running 2>&1 | grep argocd-server)" ]; then
     echo -n "argocd-server waiting"
     while [ -z "$(kubectl -n argocd get pods --field-selector=status.phase=Running 2>&1 | grep argocd-server)" ];
@@ -62,7 +61,7 @@ argocd login \
     --grpc-web \
     --username admin \
     --password "$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)" \
-    ${ARGO_CD_SERVER_URL}
+    ${ARGOCD_HOST}
 argocd app create argocd-config \
     --insecure \
     --grpc-web \
