@@ -1,0 +1,146 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: owncloud-server
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: owncloud-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: owncloud-server
+    spec:
+      volumes:
+      - name: owncloud-server
+        hostPath:
+          path: /geminos/kubernetes/owncloud/server
+      containers:
+      - name: owncloud-server
+        image: owncloud/server:10.3.2
+        imagePullPolicy: Always
+        env:
+        - name: OWNCLOUD_DOMAIN
+          value: localhost
+        - name: OWNCLOUD_DB_TYPE
+          value: mysql
+        - name: OWNCLOUD_MYSQL_UTF8MB4
+          value: 'true'
+        - name: OWNCLOUD_DB_HOST
+          value: owncloud-db
+        - name: OWNCLOUD_DB_NAME
+          value: owncloud
+        - name: OWNCLOUD_DB_USERNAME
+          value: owncloud
+        - name: OWNCLOUD_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: owncloud-db
+              key: MYSQL_PASSWORD
+        # NOTE: Admin関連の環境変数は初回起動以外に付与するとエラーとなる（既にユーザが存在するという旨）
+        #       また初回起動後は手動でパスワードを変更しておくこと
+        # - name: OWNCLOUD_ADMIN_USERNAME
+        #   value: admin
+        # - name: OWNCLOUD_ADMIN_PASSWORD
+        #   value: admin
+        ports:
+        - name: http
+          containerPort: 8080
+        volumeMounts:
+        - name: owncloud-server
+          mountPath: /mnt/data
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/healthcheck
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          exec:
+            command:
+            - /usr/bin/healthcheck
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+          periodSeconds: 30
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+  labels:
+    app.kubernetes.io/component: db
+    app.kubernetes.io/name: owncloud-db
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: owncloud-db
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: owncloud-db
+    spec:
+      volumes:
+      - name: owncloud-db
+        hostPath:
+          path: /geminos/kubernetes/owncloud/db
+      - name: owncloud-db-backup
+        hostPath:
+          path: /geminos/kubernetes/owncloud/db-backup
+      containers:
+      - name: owncloud-db
+        image: mysql:8
+        args:
+        - '--default-authentication-plugin=mysql_native_password'
+        env:
+        - name: MYSQL_DATABASE
+          value: owncloud
+        - name: MYSQL_USER
+          value: owncloud
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: owncloud-db
+              key: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: owncloud-db
+              key: MYSQL_ROOT_PASSWORD
+        ports:
+        - name: mysql
+          containerPort: 3306
+        volumeMounts:
+        - name: owncloud-db
+          mountPath: /var/lib/mysql
+        - name: owncloud-db-backup
+          mountPath: /var/lib/backup
+        livenessProbe:
+          exec:
+            command:
+            - /usr/bin/mysqladmin
+            - -u root
+            - --password="${MYSQL_ROOT_PASSWORD}"
+            - ping
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          exec:
+            command:
+            - /usr/bin/mysqladmin
+            - -u root
+            - --password="${MYSQL_ROOT_PASSWORD}"
+            - ping
+          initialDelaySeconds: 5
+          timeoutSeconds: 10
+          periodSeconds: 30

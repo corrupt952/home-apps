@@ -5,4 +5,5 @@ resources:
 - namespaces.yaml
 - nginx-ingress-controller.yaml
 - kubernetes-dashboard.yaml
+- owncloud.yaml
 - secrets.yaml
