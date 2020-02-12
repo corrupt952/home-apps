@@ -5,3 +5,4 @@ resources:
 - namespaces.yaml
 - nginx-ingress-controller.yaml
 - kubernetes-dashboard.yaml
+- secrets.yaml
