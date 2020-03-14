@@ -23,7 +23,7 @@ spec:
           path: /geminos/kubernetes/owncloud/server
       containers:
       - name: owncloud-server
-        image: owncloud/server:10.3.2
+        image: owncloud/server:10.4.0
         imagePullPolicy: Always
         env:
         - name: OWNCLOUD_DOMAIN
