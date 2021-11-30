@@ -12,7 +12,7 @@ set -o pipefail
 #
 GIT_ROOT_DIR=$(git rev-parse --show-toplevel)
 CLUSTER_NAME="ira"
-ARGOCD_HOST="argocd.local"
+ARGOCD_HOST="argocd.ira.zuki.me"
 
 #
 # Add host configuration
@@ -60,7 +60,7 @@ argocd login \
     --insecure \
     --grpc-web \
     --username admin \
-    --password "$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)" \
+    --password "$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)" \
     ${ARGOCD_HOST}
 argocd app create argocd-config \
     --insecure \
