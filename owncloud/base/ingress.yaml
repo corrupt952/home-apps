@@ -10,9 +10,13 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "20G"
 spec:
   rules:
-    - host: owncloud.local
+    - host: owncloud.ira.zuki.me
       http:
         paths:
-          - backend:
-              serviceName: owncloud-server
-              servicePort: http
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: owncloud-server
+                port:
+                  name: http
