@@ -18,9 +18,11 @@ spec:
         value: nginx
       - name: server.ingress.hosts[0]
         value: 'argocd.home'
-    # ConfigMapのdataに設定される値のため、configs.params["server.insecure"]のような形式になる必要があるため、
-    # 「.」をエスケープしてmapではなく1まとまりのKeyとして扱う
+      # ConfigMapのdataに設定される値のため、configs.params["server.insecure"]のような形式になる必要があるため、
+      # 「.」をエスケープしてmapではなく1まとまりのKeyとして扱う
       - name: configs.params.server\.insecure
+        value: 'true'
+      - name: configs.params.server\.disable\.auth
         value: 'true'
   destination:
     server: "https://kubernetes.default.svc"
