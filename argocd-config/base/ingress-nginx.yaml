@@ -2,18 +2,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: sealed-secrets
+  name: ingress-nginx
 spec:
   project: default
   source:
-    chart: sealed-secrets
-    repoURL: https://bitnami-labs.github.io/sealed-secrets
-    targetRevision: 2.7.0
+    chart: nginx-ingress
+    repoURL: https://helm.nginx.com/stable
+    targetRevision: 2.4.1
     helm:
-      releaseName: sealed-secrets
+      releaseName: ingress-nginx
+      parameters:
+      - name: create-namespace
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: kubeseal
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true
