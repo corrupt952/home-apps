@@ -4,5 +4,5 @@ namespace: argocd
 resources:
   - namespaces.yaml
   - argocd.yaml
+  - sealed-secrets.yaml
   # - nginx-ingress-controller.yaml
-  # - secrets.yaml
