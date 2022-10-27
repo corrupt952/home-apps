@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
 - argocd.yaml
 - kubernetes-dashboard.yaml
-- owncloud.yaml
