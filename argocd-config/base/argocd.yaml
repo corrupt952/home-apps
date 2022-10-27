@@ -18,10 +18,8 @@ spec:
         value: nginx
       - name: server.ingress.hosts[0]
         value: 'argocd.home'
-      - name: configs.params.annotations.server.insecure
+      - name: configs.params['server.insecure']
         value: 'true'
-      # - name: server.disable.auth
-      #   value: 'false'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
