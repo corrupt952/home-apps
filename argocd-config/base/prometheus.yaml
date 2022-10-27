@@ -13,7 +13,7 @@ spec:
       releaseName: prometheus
       parameters:
       # TODO: PersistentVolumeを何らかの形で用意するまでは無効化
-      - name: prometheus.server.persistentVolume.enabled
+      - name: server.persistentVolume.enabled
         value: 'false'
   destination:
     server: "https://kubernetes.default.svc"
