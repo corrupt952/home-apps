@@ -2,11 +2,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: argo-cd
 spec:
   project: default
   source:
-    chart: argo
+    chart: argo/argo-cd
     repoURL: https://argoproj.github.io/argo-helm
     targetRevision: argo-cd-5.8.2
     helm:
