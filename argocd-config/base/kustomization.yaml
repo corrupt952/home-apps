@@ -5,4 +5,3 @@ resources:
   - argocd.yaml
   - sealed-secrets.yaml
   - ingress-nginx.yaml
-  # - nginx-ingress-controller.yaml

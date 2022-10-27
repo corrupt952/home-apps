@@ -11,6 +11,13 @@ spec:
     targetRevision: 4.3.0
     helm:
       releaseName: ingress-nginx
+      parameters:
+      - name: controller.service.type
+        value: NodePort
+      - name: controller.service.enableHttps
+        value: 'false'
+      - name: controller.service.nodePorts.http
+        value: '32080'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
