@@ -11,8 +11,6 @@ spec:
     targetRevision: 4.3.0
     helm:
       releaseName: ingress-nginx
-      parameters:
-      - name: create-namespace
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
@@ -20,3 +18,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
