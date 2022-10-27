@@ -16,7 +16,7 @@ spec:
         value: 'true'
       - name: ingress.hosts[0]
         value: 'grafana.home'
-      - name: ingressClassName
+      - name: ingress.ingressClassName
         value: nginx
   destination:
     server: "https://kubernetes.default.svc"
