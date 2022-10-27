@@ -8,7 +8,7 @@ spec:
   source:
     chart: nginx-ingress
     repoURL: https://helm.nginx.com/stable
-    targetRevision: 2.4.1
+    targetRevision: 4.3.0
     helm:
       releaseName: ingress-nginx
       parameters:
