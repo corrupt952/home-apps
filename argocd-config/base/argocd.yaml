@@ -18,7 +18,7 @@ spec:
         value: nginx
       - name: server.ingress.hosts[0]
         value: 'argocd.home'
-      - name: server.insecure
+      - name: configs.params.server.insecure
         value: 'true'
       # - name: server.disable.auth
       #   value: 'false'
