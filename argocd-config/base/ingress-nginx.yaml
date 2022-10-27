@@ -17,7 +17,7 @@ spec:
       - name: controller.service.enableHttps
         value: 'false'
       - name: controller.service.nodePorts.http
-        value: '80'
+        value: '30080'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
