@@ -15,7 +15,7 @@ spec:
       - name: ingress.enabled
         value: 'true'
       - name: ingress.hosts[0]
-        value: 'grafana.home'
+        value: 'grafana.localhost'
       - name: ingress.ingressClassName
         value: nginx
   destination:
