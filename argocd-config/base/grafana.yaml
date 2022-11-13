@@ -18,6 +18,8 @@ spec:
         value: 'grafana.home'
       - name: ingress.ingressClassName
         value: nginx
+      - name: grafana.ini.auth.anonymous.enabled
+        value: 'true'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: monitoring
