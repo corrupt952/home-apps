@@ -11,7 +11,7 @@ spec:
     targetRevision: 0.13.7
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: metallb
+    namespace: metallb-system
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
