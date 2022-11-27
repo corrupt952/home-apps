@@ -7,4 +7,4 @@ resources:
 - ingress-nginx.yaml
 - prometheus.yaml
 - grafana.yaml
-# - metallb.yaml
+- metallb.yaml
