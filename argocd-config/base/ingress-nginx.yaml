@@ -16,8 +16,8 @@ spec:
         value: 'false'
       - name: controller.service.type
         value: LoadBalancer
-      - name: controller.service.nodePorts.http
-        value: '80'
+      # - name: controller.service.nodePorts.http
+      #   value: '80'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
