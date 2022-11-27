@@ -14,11 +14,8 @@ spec:
       parameters:
       - name: controller.service.enableHttps
         value: 'false'
-      # TODO: MetalLBを導入するまではNodePortで一時凌ぎ
       - name: controller.service.type
-        value: NodePort
-      - name: controller.service.nodePorts.http
-        value: '30080'
+        value: LoadBalancer
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
