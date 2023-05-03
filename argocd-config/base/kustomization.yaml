@@ -5,6 +5,4 @@ resources:
 - argocd.yaml
 - sealed-secrets.yaml
 - ingress-nginx.yaml
-- prometheus.yaml
-- grafana.yaml
 - metallb.yaml
