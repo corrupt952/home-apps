@@ -8,7 +8,7 @@ spec:
   source:
     chart: argo-cd
     repoURL: https://argoproj.github.io/argo-helm
-    targetRevision: 5.31.0 # renovate: depName=argoproj/argo-helm extractVersion=^argo-cd-(?<version>.+)$
+    targetRevision: 5.31.1 # renovate: depName=argoproj/argo-helm extractVersion=^argo-cd-(?<version>.+)$
     helm:
       releaseName: argocd
       parameters:
