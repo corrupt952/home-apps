@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": true,
+  "extends": [
+    "config:base",
+
+    // https://docs.renovatebot.com/presets-default/
+    ":timezone(Asia/Tokyo)",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimitNone",
+
+    // https://github.com/aquaproj/aqua-renovate-config
+    "github>aquaproj/aqua-renovate-config#1.5.2",
+  ],
+  "reviewers": [
+    "@corrupt952",
+  ],
+}
