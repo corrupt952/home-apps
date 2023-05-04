@@ -5,7 +5,7 @@ namespace: argocd
 resources:
 - argocd.yaml
 - sealed-secrets.yaml
-- ingress-nginx.yaml
-- metallb.yaml
+# - ingress-nginx.yaml
+# - metallb.yaml
 - kubernetes-dashboard.yaml
 - cloudflared.yaml
