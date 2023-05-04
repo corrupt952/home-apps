@@ -3,12 +3,5 @@ protocolHttp: 'true'
 extraArgs:
 - '--enable-skip-login'
 
-ingress:
-  enabled: 'true'
-  annotations:
-    kubernetes.io/ingress.class: nginx
-  hosts:
-  - dashboard.zuki.page
-
 rbac:
   clusterReadOnlyRole: 'true'

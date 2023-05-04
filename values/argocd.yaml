@@ -1,11 +1,3 @@
-server:
-  ingress:
-    enabled: 'true'
-    ingressClassName: nginx
-    hosts:
-    - argocd.zuki.page
-    - argocd-test.zuki.page
-
 configs:
   params:
     server.insecure: 'true'
