@@ -8,7 +8,7 @@ spec:
   source:
     chart: metallb
     repoURL: https://metallb.github.io/metallb
-    targetRevision: 0.13.9 # renovate: depName=metallb/metallb extractVersion=^v(?<version>.+)$
+    targetRevision: 0.13.9 # renovate: depName=metallb/metallb extractVersion=^metallb-chart-(?<version>.+)$
   destination:
     server: "https://kubernetes.default.svc"
     namespace: metallb-system
