@@ -3,7 +3,7 @@ server:
     enabled: 'true'
     ingressClassName: nginx
     hosts:
-    - argocd.home
+    - argocd.zuki.page
 
 configs:
   params:
