@@ -1,4 +1,4 @@
 controller:
   service:
     enableHttps: 'false'
-    type: NodePort
+    type: LoadBalancer
