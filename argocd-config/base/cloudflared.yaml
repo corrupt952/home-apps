@@ -2,16 +2,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: metallb
+  name: cloudflared
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    chart: metallb
-    repoURL: https://metallb.github.io/metallb
-    targetRevision: 0.13.9 # renovate: depName=metallb/metallb extractVersion=^metallb-chart-(?<version>.+)$
+    repoURL: https://github.com/corrupt952/home-apps
+    path: cloudflared/base
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: metallb-system
+    namespace: default
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
