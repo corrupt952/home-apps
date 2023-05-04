@@ -14,12 +14,15 @@ spec:
       parameters:
       - name: ingress.enabled
         value: 'true'
-      - name: ingress.ingressClassName
-        value: nginx
       - name: ingress.annotations.kubernetes\.io/ingress\.class
         value: nginx
       - name: ingress.hosts[0]
         value: 'dashboard.home'
+      - name: protocolHttp
+        value: 'true'
+      - name: extraArgs[0]
+        value: '--enable-skip-login'
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
