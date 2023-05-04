@@ -13,6 +13,9 @@ spec:
     targetRevision: 16.0.4 # TODO: renovate: depName=bitnami-labs/wordpress-games extractVersion=^helm-v(?<version>.+)$
     helm:
       releaseName: wordpress
+      parameters:
+      - name: persistence.storageClass
+        value: local-storage
   destination:
     server: "https://kubernetes.default.svc"
     namespace: wordpress-games
