@@ -4,6 +4,7 @@ server:
     ingressClassName: nginx
     hosts:
     - argocd.zuki.page
+    - argocd-test.zuki.page
 
 configs:
   params:
