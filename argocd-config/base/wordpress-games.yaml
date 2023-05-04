@@ -18,6 +18,10 @@ spec:
         value: nfs-client
       - name: mariadb.primary.persistence.storageClass
         value: nfs-client
+      - name: wordpressPassword
+        value: test
+      - name: service.type
+        value: ClusterIP
   destination:
     server: "https://kubernetes.default.svc"
     namespace: wordpress-games
