@@ -4,6 +4,7 @@ kind: Application
 metadata:
   name: cloudflared
 spec:
+  project: default
   source:
     repoURL: https://github.com/corrupt952/home-apps
     targetRevision: devleop/cloudflare # FIXME: branch
