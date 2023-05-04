@@ -14,6 +14,8 @@ spec:
       parameters:
       - name: ingress.enabled
         value: 'true'
+      - name: ingress.ingressClassName
+        value: nginx
       - name: ingress.hosts[0]
         value: 'dashboard.home'
   destination:
