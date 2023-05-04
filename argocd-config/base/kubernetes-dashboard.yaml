@@ -6,7 +6,8 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:corrupt952/home-apps
+    # repoURL: git@github.com:corrupt952/home-apps
+    repoURL: https://github.com/corrupt952/home-apps
     path: charts/kubernetes-dashboard
     targetRevision: develop/dashboard # FIXME: branch
     valueFiles:
