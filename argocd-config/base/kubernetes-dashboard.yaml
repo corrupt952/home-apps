@@ -16,6 +16,8 @@ spec:
         value: 'true'
       - name: ingress.ingressClassName
         value: nginx
+      - name: ingress.annotations.kubernetes\.io/ingress\.class
+        value: nginx
       - name: ingress.hosts[0]
         value: 'dashboard.home'
   destination:
