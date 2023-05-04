@@ -1,0 +1,29 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nfs-subdir-external-provisioner
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: nfs-subdir-external-provisioner
+    repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    targetRevision: 2.8.2 # renovate: depName=bitnami-labs/nfs-subdir-external-provisioner extractVersion=^helm-v(?<version>.+)$
+    helm:
+      releaseName: nfs-subdir-external-provisioner
+      parameters:
+      - name: nfs.server
+        value: control-plane.local
+      - name: nfs.path
+        value: /mnt/share/nfs
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: default # TODO: check
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

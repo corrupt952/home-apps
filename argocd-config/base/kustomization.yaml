@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: argocd
 resources:
 - argocd.yaml
+- nfs-subdir-external-provisioner.yaml
 - sealed-secrets.yaml
 - kubernetes-dashboard.yaml
 - cloudflared.yaml
