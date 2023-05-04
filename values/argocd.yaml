@@ -1,0 +1,11 @@
+server:
+  ingress:
+    enabled: 'true'
+    ingressClassName: nginx
+    hosts:
+    - argocd.home
+
+configs:
+  params:
+    server.insecure: 'true'
+    server.disable.auth: 'true'

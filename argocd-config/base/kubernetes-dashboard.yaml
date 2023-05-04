@@ -2,22 +2,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ingress-nginx
+  name: kubernetes-dashboard
 spec:
   project: default
   sources:
     - ref: manifest
       repoURL: https://github.com/corrupt952/home-apps
-    - chart: ingress-nginx
-      repoURL: https://kubernetes.github.io/ingress-nginx
-      targetRevision: 4.6.0 # renovate: depName=kubernetes/ingress-nginx extractVersion=^helm-chart-(?<version>.+)$
+    - chart: kubernetes-dashboard
+      repoURL: https://kubernetes.github.io/dashboard/
+      targetRevision: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
       helm:
-        releaseName: ingress-nginx
+        releaseName: kubernetes-dashboard
         valueFiles:
-        - $manifest/values/ingress-nginx.yaml
+        - $manifest/values/kubernetes-dashboard.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: ingress-nginx
+    namespace: kubernetes-dashboard
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
