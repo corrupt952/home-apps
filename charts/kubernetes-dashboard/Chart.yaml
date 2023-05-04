@@ -1,0 +1,9 @@
+---
+apiVersion: v3
+name: kubernetes-dashboard
+type: application
+version: 1.0.0
+dependencies:
+- name: kubernetes-dashboard
+  version: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
+  repository: https://kubernetes.github.io/dashboard/

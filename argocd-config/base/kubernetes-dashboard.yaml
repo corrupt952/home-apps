@@ -6,23 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    chart: kubernetes-dashboard
-    repoURL: https://kubernetes.github.io/dashboard/
-    targetRevision: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
-    helm:
-      releaseName: kubernetes-dashboard
-      parameters:
-      - name: ingress.enabled
-        value: 'true'
-      - name: ingress.annotations.kubernetes\.io/ingress\.class
-        value: nginx
-      - name: ingress.hosts[0]
-        value: 'dashboard.home'
-      - name: protocolHttp
-        value: 'true'
-      - name: extraArgs[0]
-        value: '--enable-skip-login'
-
+    repoURL: git@github.com:corrupt952/home-apps
+    path: charts/kubernetes-dashboard
+    targetRevision: develop/dashboard # FIXME: branch
+    valueFiles:
+    - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
