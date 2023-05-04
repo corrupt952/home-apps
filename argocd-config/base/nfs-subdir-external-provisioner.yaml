@@ -10,7 +10,7 @@ spec:
   source:
     chart: nfs-subdir-external-provisioner
     repoURL: https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
-    targetRevision: 2.8.2 # renovate: depName=bitnami-labs/nfs-subdir-external-provisioner extractVersion=^helm-v(?<version>.+)$
+    targetRevision: 4.0.2 # TODO: renovate: depName=bitnami-labs/nfs-subdir-external-provisioner extractVersion=^helm-v(?<version>.+)$
     helm:
       releaseName: nfs-subdir-external-provisioner
       parameters:
