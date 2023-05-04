@@ -11,6 +11,11 @@ spec:
     targetRevision: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
     helm:
       releaseName: kubernetes-dashboard
+      parameters:
+      - name: ingress.enabled
+        value: 'true'
+      - name: ingress.hosts[0]
+        value: 'dashboard.home'
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
