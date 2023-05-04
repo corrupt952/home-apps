@@ -1,4 +1,0 @@
-controller:
-  service:
-    enableHttps: 'false'
-    type: LoadBalancer
