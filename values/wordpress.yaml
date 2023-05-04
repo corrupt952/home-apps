@@ -14,10 +14,10 @@ service:
 
 extraEnvVars:
 - name: PHP_UPLOAD_MAX_FILESIZE
-  value: 500M
+  value: 1024M
 - name: PHP_POST_MAX_SIZE
-  value: 500M
+  value: 1024M
 - name: PHP_MAX_EXECUTION_TIME
   value: "0"
 - name: PHP_MEMORY_LIMIT
-  value: 1024M
+  value: 2048M
