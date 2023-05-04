@@ -9,9 +9,11 @@ spec:
     - ref: manifest
       repoURL: https://github.com/corrupt952/home-apps
       targetRevision: develop/dashboard # FIXME: branch
-    - repoURL: https://kubernetes.github.io/dashboard/
+    - chart: kubernetes-dashboard
+      repoURL: https://kubernetes.github.io/dashboard/
       targetRevision: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
       helm:
+        releaseName: kubernetes-dashboard
         valueFiles:
         - $manifest/charts/kubernetes-dashboard/values.yaml
   destination:
