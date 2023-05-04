@@ -16,6 +16,8 @@ spec:
       parameters:
       - name: persistence.storageClass
         value: nfs-client
+      - name: mariadb.primary.persistence.storageClass
+        value: nfs-client
   destination:
     server: "https://kubernetes.default.svc"
     namespace: wordpress-games
