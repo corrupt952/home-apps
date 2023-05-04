@@ -8,3 +8,4 @@ resources:
 - ingress-nginx.yaml
 - metallb.yaml
 - kubernetes-dashboard.yaml
+- cloudflared.yaml
