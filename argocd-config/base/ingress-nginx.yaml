@@ -5,17 +5,17 @@ metadata:
   name: ingress-nginx
 spec:
   project: default
-  source:
-    chart: ingress-nginx
-    repoURL: https://kubernetes.github.io/ingress-nginx
-    targetRevision: 4.6.0 # renovate: depName=kubernetes/ingress-nginx extractVersion=^helm-chart-(?<version>.+)$
-    helm:
-      releaseName: ingress-nginx
-      parameters:
-      - name: controller.service.enableHttps
-        value: 'false'
-      - name: controller.service.type
-        value: LoadBalancer
+  sources:
+    - ref: manifest
+      repoURL: https://github.com/corrupt952/home-apps
+      targetRevision: develop/dashboard # FIXME: branch
+    - chart: ingress-nginx
+      repoURL: https://kubernetes.github.io/ingress-nginx
+      targetRevision: 4.6.0 # renovate: depName=kubernetes/ingress-nginx extractVersion=^helm-chart-(?<version>.+)$
+      helm:
+        releaseName: ingress-nginx
+        valueFiles:
+        - $manifest/values/argocd/values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: ingress-nginx
