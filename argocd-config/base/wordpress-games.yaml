@@ -10,7 +10,7 @@ spec:
   source:
     chart: wordpress
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 6.2.0 # TODO: renovate: depName=bitnami-labs/wordpress-games extractVersion=^helm-v(?<version>.+)$
+    targetRevision: 16.0.4 # TODO: renovate: depName=bitnami-labs/wordpress-games extractVersion=^helm-v(?<version>.+)$
     helm:
       releaseName: wordpress
   destination:
