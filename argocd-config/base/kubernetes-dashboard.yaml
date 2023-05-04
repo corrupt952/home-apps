@@ -15,7 +15,7 @@ spec:
       helm:
         releaseName: kubernetes-dashboard
         valueFiles:
-        - $manifest/values/kubernetes-dashboard/values.yaml
+        - $manifest/values/kubernetes-dashboard.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: kubernetes-dashboard
