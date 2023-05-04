@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
     - ref: manifest
-      repoURL: git@github.com:corrupt952/home-apps
+      repoURL: https://github.com/corrupt952/home-apps
       targetRevision: develop/dashboard # FIXME: branch
     - repoURL: https://kubernetes.github.io/dashboard/
       path: charts/kubernetes-dashboard
