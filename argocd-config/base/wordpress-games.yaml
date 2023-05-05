@@ -12,7 +12,7 @@ spec:
       repoURL: https://github.com/corrupt952/home-apps
     - chart: wordpress
       repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: 16.0.2
+      targetRevision: 16.0.4
       helm:
         releaseName: wordpress
         valueFiles:
