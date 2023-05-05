@@ -1,9 +1,6 @@
 global:
   storageClass: nfs-client
 
-image:
-  debug: true
-
 allowEmptyPassword: false
 existingSecret: wordpress-credentials
 
@@ -18,8 +15,6 @@ externalDatabase:
   user: wordpress
   database: wordpress
   existingSecret: wordpress-credentials
-
-# mysql -u wordpress --port 3306 -h mariadb.wordpress.svc.cluster.local --password=$WORDPRESS_DATABASE_PASSWORD wordpress
 
 service:
   type: ClusterIP
