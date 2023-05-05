@@ -17,7 +17,7 @@ externalDatabase:
   database: wordpress
   existingSecret: wordpress-credentials
 
-# mysql -u wordpress -h mariadb.wordpress.svc.cluster.local -p
+# mysql -u wordpress --port 3306 -h mariadb.wordpress.svc.cluster.local --password=$WORDPRESS_DATABASE_PASSWORD wordpress
 
 service:
   type: ClusterIP
