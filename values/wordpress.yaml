@@ -1,0 +1,23 @@
+# NOTE: initial password
+# wordpressPassword: test
+
+persistence:
+  storageClass: nfs-client
+
+mariadb:
+  primary:
+    persistence:
+      storageClass: nfs-client
+
+service:
+  type: ClusterIP
+
+extraEnvVars:
+- name: PHP_UPLOAD_MAX_FILESIZE
+  value: 1024M
+- name: PHP_POST_MAX_SIZE
+  value: 1024M
+- name: PHP_MAX_EXECUTION_TIME
+  value: "0"
+- name: PHP_MEMORY_LIMIT
+  value: 2048M

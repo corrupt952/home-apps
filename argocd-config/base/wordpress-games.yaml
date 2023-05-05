@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubernetes-dashboard
+  name: wordpress-games
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,16 +10,16 @@ spec:
   sources:
     - ref: manifest
       repoURL: https://github.com/corrupt952/home-apps
-    - chart: kubernetes-dashboard
-      repoURL: https://kubernetes.github.io/dashboard/
-      targetRevision: 6.0.6
+    - chart: wordpress
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 16.0.2
       helm:
-        releaseName: kubernetes-dashboard
+        releaseName: wordpress
         valueFiles:
-        - $manifest/values/kubernetes-dashboard.yaml
+        - $manifest/values/wordpress.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: kubernetes-dashboard
+    namespace: wordpress-games
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

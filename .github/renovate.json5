@@ -1,6 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "dependencyDashboard": true,
+  "reviewers": [
+    "@corrupt952",
+  ],
+
   "extends": [
     "config:base",
 
@@ -12,20 +16,14 @@
     // https://github.com/aquaproj/aqua-renovate-config
     "github>aquaproj/aqua-renovate-config#1.5.2",
   ],
-  "reviewers": [
-    "@corrupt952",
-  ],
-
-  "regexManagers": [
-    {
-      "datasourceTemplate": "github-releases",
-      "fileMatch": [
-        "argocd-config/base/.*\\.yaml"
-      ],
-      "matchStrings": [
-        // e.g.) targetRevision: 5.31.0 # renovate: depName=argoproj/argo-helm extractVersion=^argo-cd-(?<version>.+)$
-        " +targetRevision: +(?<currentValue>[^'\" ]+) +# renovate: depName=(?<depName>[^ \\n]+) +(extractVersion=(?<extractVersion>[^\\n]+))?",
-      ],
-    },
-  ]
+  "argocd": {
+    "fileMatch": [
+      "argocd-config/base/.*\\.yaml",
+    ],
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "cloudflared/base/.*\\.yaml",
+    ],
+  },
 }
