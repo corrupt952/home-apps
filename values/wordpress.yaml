@@ -1,4 +1,4 @@
-existingSecret: wordpress-secret
+existingSecret: wordpress
 
 persistence:
   storageClass: nfs-client
