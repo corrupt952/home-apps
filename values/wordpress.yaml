@@ -11,6 +11,8 @@ memcached:
 
 externalDatabase:
   host: mariadb.wordpress.svc.cluster.local
+  user: wordpress
+  database: wordpress
   existingSecret: wordpress-credentials
 
 service:
