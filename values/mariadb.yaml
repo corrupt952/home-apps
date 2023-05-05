@@ -1,0 +1,7 @@
+global:
+  storageClass: nfs-client
+
+auth:
+  username: wordpress
+  database: wordpress
+  existingSecret: wordpress-credentials

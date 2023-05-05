@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wordpress-games
+  name: wordpress
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -10,6 +10,15 @@ spec:
   sources:
     - ref: manifest
       repoURL: https://github.com/corrupt952/home-apps
+    - path: wordpress/base
+      repoURL: https://github.com/corrupt952/home-apps
+    - chart: mariadb
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 12.1.4
+      helm:
+        releaseName: mariadb
+        valueFiles:
+        - $manifest/values/mariadb.yaml
     - chart: wordpress
       repoURL: https://charts.bitnami.com/bitnami
       targetRevision: 16.0.4
@@ -19,7 +28,7 @@ spec:
         - $manifest/values/wordpress.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: wordpress-games
+    namespace: wordpress
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

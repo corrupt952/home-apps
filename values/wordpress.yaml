@@ -1,13 +1,20 @@
-# NOTE: initial password
-# wordpressPassword: test
-
-persistence:
+global:
   storageClass: nfs-client
 
+allowEmptyPassword: false
+existingSecret: wordpress-credentials
+
 mariadb:
-  primary:
-    persistence:
-      storageClass: nfs-client
+  enabled: false
+
+memcached:
+  enabled: false
+
+externalDatabase:
+  host: mariadb.wordpress.svc.cluster.local
+  user: wordpress
+  database: wordpress
+  existingSecret: wordpress-credentials
 
 service:
   type: ClusterIP
