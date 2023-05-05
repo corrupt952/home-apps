@@ -12,7 +12,7 @@ spec:
       repoURL: https://github.com/corrupt952/home-apps
     - chart: kubernetes-dashboard
       repoURL: https://kubernetes.github.io/dashboard/
-      targetRevision: 6.0.6
+      targetRevision: 6.0.7
       helm:
         releaseName: kubernetes-dashboard
         valueFiles:
