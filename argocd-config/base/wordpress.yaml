@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wordpress-games
+  name: wordpress
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -19,7 +19,7 @@ spec:
         - $manifest/values/wordpress.yaml
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: wordpress-games
+    namespace: wordpress
   syncPolicy:
     syncOptions:
     - CreateNamespace=true

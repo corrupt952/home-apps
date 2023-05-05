@@ -1,5 +1,5 @@
 # NOTE: initial password
-# wordpressPassword: test
+wordpressPassword: test
 
 persistence:
   storageClass: nfs-client
