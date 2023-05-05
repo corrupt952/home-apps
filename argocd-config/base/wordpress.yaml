@@ -14,6 +14,13 @@ spec:
     - path: wordpress/base
       repoURL: https://github.com/corrupt952/home-apps
       targetRevision: develop/fix-wordpress # FIXME: branch
+    - chart: mariadb
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 12.1.4
+      helm:
+        releaseName: mariadb
+        valueFiles:
+        - $manifest/values/mariadb.yaml
     - chart: wordpress
       repoURL: https://charts.bitnami.com/bitnami
       targetRevision: 16.0.4

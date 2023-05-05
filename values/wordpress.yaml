@@ -1,14 +1,16 @@
-existingSecret: wordpress
-
-persistence:
+global:
   storageClass: nfs-client
 
+existingSecret: wordpress-credentials
+
 mariadb:
-  auth:
-    existingSecret: wordpress-mariadb
-  primary:
-    persistence:
-      storageClass: nfs-client
+  enabled: false
+
+memcached:
+  enabled: false
+
+externalDatabase:
+  existingSecret: wordpress-credentials
 
 service:
   type: ClusterIP
