@@ -12,7 +12,7 @@ spec:
       repoURL: https://github.com/corrupt952/home-apps
     - chart: kubernetes-dashboard
       repoURL: https://kubernetes.github.io/dashboard/
-      targetRevision: 6.0.7 # TODO: renovate: depName=bitnami-labs/kubernetes-dashboard extractVersion=^helm-v(?<version>.+)$
+      targetRevision: 6.0.6
       helm:
         releaseName: kubernetes-dashboard
         valueFiles:

@@ -13,7 +13,7 @@ spec:
       targetRevision: develop/wordpress # FIXME:
     - chart: wordpress
       repoURL: https://charts.bitnami.com/bitnami
-      targetRevision: 16.0.4 # TODO: renovate: depName=bitnami-labs/wordpress-games extractVersion=^helm-v(?<version>.+)$
+      targetRevision: 16.0.2
       helm:
         releaseName: wordpress
         valueFiles:
