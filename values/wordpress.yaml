@@ -1,5 +1,4 @@
-# NOTE: initial password
-wordpressPassword: test
+existingSecret: wordpress-secret
 
 persistence:
   storageClass: nfs-client
