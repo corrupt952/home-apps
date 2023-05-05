@@ -1,6 +1,9 @@
 global:
   storageClass: nfs-client
 
+image:
+  debug: true
+
 allowEmptyPassword: false
 existingSecret: wordpress-credentials
 

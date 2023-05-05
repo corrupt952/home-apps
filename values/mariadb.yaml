@@ -3,4 +3,5 @@ global:
 
 auth:
   username: wordpress
+  database: wordpress
   existingSecret: wordpress-credentials
