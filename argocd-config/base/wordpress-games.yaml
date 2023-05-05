@@ -10,7 +10,6 @@ spec:
   sources:
     - ref: manifest
       repoURL: https://github.com/corrupt952/home-apps
-      targetRevision: develop/wordpress # FIXME:
     - chart: wordpress
       repoURL: https://charts.bitnami.com/bitnami
       targetRevision: 16.0.2
