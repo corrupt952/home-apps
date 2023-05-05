@@ -1,9 +1,8 @@
 global:
   storageClass: nfs-client
 
-wordpressSkipInstall: 'true'
-
-allowEmptyPassword: 'false'
+wordpressSkipInstall: true
+allowEmptyPassword: false
 existingSecret: wordpress-credentials
 
 mariadb:
