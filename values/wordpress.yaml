@@ -4,6 +4,8 @@ persistence:
   storageClass: nfs-client
 
 mariadb:
+  auth:
+    existingSecret: wordpress-mariadb
   primary:
     persistence:
       storageClass: nfs-client
