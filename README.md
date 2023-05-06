@@ -4,6 +4,11 @@ Repository for the home kubernetes cluster.
 
 This repository manages the manifests of the home kubernetes cluster.
 
+## ⚠️ Archived notice
+
+This repository is archived.
+It has been moved to corrupt952/home.
+
 ## Setup Argo CD
 
 ```bash
