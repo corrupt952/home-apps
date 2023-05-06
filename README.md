@@ -7,7 +7,7 @@ This repository manages the manifests of the home kubernetes cluster.
 ## ⚠️ Archived notice
 
 This repository is archived.
-It has been moved to corrupt952/home.
+It has been moved to [corrupt952/home](https://github.com/corrupt952/home).
 
 ## Setup Argo CD
 
